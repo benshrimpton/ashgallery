@@ -2,17 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
 .hotel-gallery-wrap {
-  border: solid 10px red;
+  border: dashed 3px red;
+  cursor:grab
 }
 .hotel-gallery {
-  border: solid 10px blue;
+  border: dashed 3px blue;
   width: 200%;
+  cursor:grab;
+  /* animation: move 600s linear infinite; */
 }
 .hotel-gallery.zoomed-out {
   width: 50%;
 }
-
+.hotel-gallery__item {
+  cursor:grab;
+}
 footer {
   height: 500px;
   background-color: gray;
