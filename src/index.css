@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hotel-gallery-wrap {
+  border: solid 10px red;
+}
+.hotel-gallery {
+  border: solid 10px blue;
+  width: 200%;
+}
+.hotel-gallery.zoomed-out {
+  width: 50%;
+}
+
+footer {
+  height: 500px;
+  background-color: gray;
+}
+
+#button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: white;
+  padding :1rem;
+  z-index: 9;
+  border: solid 1px
+}
