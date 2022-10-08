@@ -58,11 +58,14 @@ function initDrag() {
     startFunction()
   });  
 
-  draggie.on( 'staticClick', function( event, pointer ) {
-    alert("Static click..... trigger the Swiper overlay")
+  draggie.on( 'staticClick', function( event ) {
     var parentElem = event.target.parentNode
-    console.log("parentElem". parentElem)
-    console.log(event.target.closest('.hotel-gallery__item'))
+    // console.log("parentElem", parentElem)
+    // console.log("parentElem.tagName", parentElem.tagName)
+    if(parentElem.tagName == 'PICTURE') {
+      let item = parentElem.closest('.hotel-gallery__item')
+      alert("This will trigger the carousel overlay")
+    }    
   })  
 
   const button = document.getElementById('button');

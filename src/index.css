@@ -12,12 +12,12 @@
   }
 }
 .hotel-gallery-wrap {
-  border: dashed 10px red;
+  /* border: dashed 10px red; */
   cursor:grab;
   height: 100vh;
 }
 .hotel-gallery {
-  border: dashed 3px blue;
+  /* border: dashed 3px blue; */
   width: 200%;
   cursor:grab;
   /* animation: move 600s linear infinite; */
@@ -28,9 +28,18 @@
 .hotel-gallery__item {
   cursor:grab;
 }
+header,
 footer {
   height: 500px;
   background-color: gray;
+  text-align: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header {
+  height:48px;
 }
 
 #button {
