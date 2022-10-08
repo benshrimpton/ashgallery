@@ -12,8 +12,9 @@
   }
 }
 .hotel-gallery-wrap {
-  border: dashed 3px red;
-  cursor:grab
+  border: dashed 10px red;
+  cursor:grab;
+  height: 100vh;
 }
 .hotel-gallery {
   border: dashed 3px blue;

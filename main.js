@@ -5,17 +5,22 @@ import $ from  'jquery';
 
 
 const elem = document.querySelector('#panzoomEl');
-
-function moveElem(){
+var myVar;
+function scrollTimer() {
   var foo = document.getElementById('hotel-gallery-wrap')
-  setInterval(function() {
-    
-    //if (animation complete) clearInterval(timer);
-    foo.scrollTop = foo.scrollTop + 2;
-    console.log("move...")
-  }, 20)
+  foo.scrollTop = foo.scrollTop + 1;
+  console.log(foo.scrollTop)
+  if( Math.floor(foo.scrollTop + 1) == foo.scrollTop) {
+    stopFunction()
+  }
 }
 
+function stopFunction() {
+    clearInterval(myVar);
+}
+function startFunction() {
+  myVar = setInterval(scrollTimer, 24);
+}
 
 
 function initDrag() {
@@ -45,15 +50,19 @@ function initDrag() {
 
   draggie.on( 'dragStart', function( event, pointer ){
     console.log("Drag started... stop the auto scroll behaviour")
+    stopFunction()
   });
 
   draggie.on( 'dragEnd', function( event, pointer ){
     console.log("Drag ended... stop the auto scroll behaviour")
+    startFunction()
   });  
 
   draggie.on( 'staticClick', function( event, pointer ) {
     alert("Static click..... trigger the Swiper overlay")
-    console.log(event.target)
+    var parentElem = event.target.parentNode
+    console.log("parentElem". parentElem)
+    console.log(event.target.closest('.hotel-gallery__item'))
   })  
 
   const button = document.getElementById('button');
@@ -68,14 +77,18 @@ function initDrag() {
     
     if (button.innerHTML === "Zoom out") {
       button.innerHTML = "Zoom in";
+      stopFunction();
       //draggie.disable()
+      
     } else {
       button.innerHTML = "Zoom out";
       document.getElementById('hotel-gallery-wrap').scrollLeft += ww;
+      startFunction();
       //draggie.enable()
+      
     }
   };
 
 }
-initDrag()
-moveElem()
+initDrag();
+startFunction();
