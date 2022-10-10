@@ -5,21 +5,26 @@ import $ from  'jquery';
 
 
 const elem = document.querySelector('#panzoomEl');
-var myVar;
+const button = document.getElementById('button');
+let theInterval;
+
+
 function scrollTimer() {
   var foo = document.getElementById('hotel-gallery-wrap')
   foo.scrollTop = foo.scrollTop + 1;
-  console.log(foo.scrollTop)
+  // console.log(foo.scrollTop)
   if( Math.floor(foo.scrollTop + 1) == foo.scrollTop) {
     stopFunction()
   }
 }
 
 function stopFunction() {
-    clearInterval(myVar);
+  console.log("stopFunction called")
+  clearInterval(theInterval);
 }
 function startFunction() {
-  myVar = setInterval(scrollTimer, 24);
+  console.log("startFunction called")
+  theInterval = setInterval(scrollTimer, 24);
 }
 
 
@@ -54,41 +59,58 @@ function initDrag() {
   });
 
   draggie.on( 'dragEnd', function( event, pointer ){
-    console.log("Drag ended... stop the auto scroll behaviour")
-    startFunction()
+    console.log("Drag ended... stop the auto scroll behaviour");
+    setTimeout(function(){
+      startFunction();
+    }, 200)
+    
   });  
 
   draggie.on( 'staticClick', function( event ) {
     var parentElem = event.target.parentNode
-    // console.log("parentElem", parentElem)
-    // console.log("parentElem.tagName", parentElem.tagName)
     if(parentElem.tagName == 'PICTURE') {
       let item = parentElem.closest('.hotel-gallery__item')
       alert("This will trigger the carousel overlay")
     }    
   })  
 
-  const button = document.getElementById('button');
+  let count = 1;
+  
   button.onclick = () => {
+    count = count++;
+    console.log(count)
     document.getElementById('hotel-gallery-wrap').scrollLeft = 0;
     document.getElementById('hotel-gallery-wrap').scrollTop = 0;
-    elem.classList.toggle('zoomed-out')
+    elem.classList.add('zoomed-out')
+    if( count < 4){
+      elem.classList.add(`zoomed-out-${count++}`)
+      elem.setAttribute('data-zoom', count++)
+    }
+    else {
+      elem.classList.add(`zoomed-out-${--count}`)
+      elem.setAttribute('data-zoom', --count)
+    }
+    
+    //Set the XY position to top of page.
     elem.style.top = 0
     elem.style.left = 0
     window.scrollTo(0, 0);
-    var ww = window.innerWidth / 4;
+    
     
     if (button.innerHTML === "Zoom out") {
       button.innerHTML = "Zoom in";
       stopFunction();
-      //draggie.disable()
-      
-    } else {
+      draggie.disable()      
+    }
+    else {
       button.innerHTML = "Zoom out";
+      var ww = window.innerWidth / 4;
       document.getElementById('hotel-gallery-wrap').scrollLeft += ww;
-      startFunction();
-      //draggie.enable()
-      
+      setTimeout(function(){
+        startFunction();
+        draggie.enable()
+      }, 200)
+            
     }
   };
 

@@ -16,16 +16,14 @@
   cursor:grab;
   height: 100vh;
 }
-.hotel-gallery {
+.hotel-gallery:not(.zoomed-out) {
   /* border: dashed 3px blue; */
   width: 200%;
   cursor:grab;
   /* animation: move 600s linear infinite; */
 }
-.hotel-gallery.zoomed-out {
-  width: 50%;
-}
-.hotel-gallery__item {
+
+.hotel-gallery:not(.zoomed-out) .hotel-gallery__item {
   cursor:grab;
 }
 header,
@@ -50,4 +48,15 @@ header {
   padding :1rem;
   z-index: 9;
   border: solid 1px
+}
+
+#panzoomEl.zoomed-out.zoomed-out-1 {
+  columns: 7;
+  width: 100%;
+}
+#panzoomEl.zoomed-out.zoomed-out-2 {
+  columns: 8;
+}
+#panzoomEl.zoomed-out.zoomed-out-3 {
+  columns: 9;
 }
