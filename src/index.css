@@ -57,7 +57,6 @@ header {
   column-gap: 1rem;
 }
 #panzoomEl {
-  border: solid 1px yellow;
   padding-bottom: 1rem;
 }
 #panzoomEl[data-zoom='1']{
