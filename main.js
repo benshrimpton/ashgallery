@@ -81,7 +81,7 @@ function initDrag() {
       elem.style.top = 0
       elem.style.left = 0
       window.scrollTo(0, 0);
-      // draggie.disable()
+      draggie.disable()
     }
 
     else if($("#panzoomEl").attr('data-zoom') === '1') {
@@ -93,7 +93,7 @@ function initDrag() {
       elem.style.top = 0
       elem.style.left = 0
       window.scrollTo(0, 0); 
-      // draggie.disable()     
+      draggie.disable()     
     }    
 
     else if($("#panzoomEl").attr('data-zoom') === '2') {
@@ -103,8 +103,8 @@ function initDrag() {
       //Set the XY position to top of page.
       elem.style.top = 0
       elem.style.left = 0
-      window.scrollTo(0, 0);  
-      // draggie.disable()    
+      window.scrollTo(0, 16);  
+      draggie.disable()    
     } 
 
     else if($("#panzoomEl").attr('data-zoom') === '3') {

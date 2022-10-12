@@ -28,22 +28,27 @@
   cursor:grab;
   /* animation: move 600s linear infinite; */
 }
-
+.hotel-gallery__item {
+  padding-bottom: 1rem;
+}
 .hotel-gallery:not(.zoomed-out) .hotel-gallery__item {
   cursor:grab;
 }
 header,
 footer {
   height: 500px;
-  background-color: gray;
-  text-align: center;
-  color: white;
+  background-color: #f6f2ea;
+ 
+  border-bottom: solid 1px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 header {
   height:48px;
+  text-align: left;
+  justify-content: flex-start;
+  padding: 0 1.5rem
 }
 
 #button {
@@ -78,11 +83,11 @@ header {
   }
   #panzoomEl[data-zoom='2']{
     columns: 8;
-    width: 100%;
+    width: 80%;
   }
   #panzoomEl[data-zoom='3'] {
     columns: 9;
-    width: 100%;
+    width: 65%;
   }
 }
 
