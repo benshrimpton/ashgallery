@@ -12,9 +12,10 @@
   }
 }
 .hotel-gallery-wrap {
-  border: solid 3px red;
+  /* border: solid 10px red; */
   cursor:grab;
-  /* height: 100vh; */
+  
+  height: -webkit-fill-available;
 }
 @screen sm {
   .hotel-gallery-wrap {

@@ -1,5 +1,4 @@
 import './src/index.css';
-import PinchZoom from 'https://unpkg.com/pinch-zoom-js@2.3.5/dist/pinch-zoom.min.js';
 
 
 const elem = document.querySelector('#panzoomEl');
@@ -14,7 +13,7 @@ function scrollTimer() {
   //foo.scrollTop = foo.scrollTop + 1;
 
 
-  console.log(foo.scrollTop, fooScrollheight)
+  //console.log(foo.scrollTop, fooScrollheight)
   // if( Math.floor(foo.scrollTop + 1) == Math.floor(fooScrollheight)) {
   //   stopFunction()
   // }
@@ -38,19 +37,14 @@ function initDrag() {
     gWrap.scrollTop = 0;  
     gWrap.scrollLeft += ww;
 
-  //Code for Desktop
-
-
     //var elem = document.querySelector('#panzoomEl');
     var draggie = new Draggabilly( elem, {
       //containment: '#hotel-gallery-wrap'
     });
 
-    //let pz = new PinchZoom(gWrap);
-
-    function listener(e) {
-      console.log( e, this.position.x, this.position.y );    
-    }
+    // function listener(e) {
+    //   console.log( e, this.position.x, this.position.y );    
+    // }
 
     draggie.on( 'dragStart', function( event, pointer ){
       console.log("Drag started... stop the auto scroll behaviour")
@@ -61,9 +55,8 @@ function initDrag() {
     draggie.on( 'dragEnd', function( event, pointer ){
       console.log("Drag ended... stop the auto scroll behaviour");
       setTimeout(function(){
-        startFunction();
-      }, 200)
-      
+        if( $(window).width() > 768 ) { startFunction(); }
+      }, 300)      
     });  
 
     draggie.on( 'staticClick', function( event ) {
@@ -86,7 +79,7 @@ function initDrag() {
       elem.style.top = 0
       elem.style.left = 0
       window.scrollTo(0, 0);
-      draggie.disable()
+      // draggie.disable()
     }
 
     else if($("#panzoomEl").attr('data-zoom') === '1') {
@@ -98,7 +91,7 @@ function initDrag() {
       elem.style.top = 0
       elem.style.left = 0
       window.scrollTo(0, 0); 
-      draggie.disable()     
+      // draggie.disable()     
     }    
 
     else if($("#panzoomEl").attr('data-zoom') === '2') {
@@ -109,7 +102,7 @@ function initDrag() {
       elem.style.top = 0
       elem.style.left = 0
       window.scrollTo(0, 0);  
-      draggie.disable()    
+      // draggie.disable()    
     } 
 
     else if($("#panzoomEl").attr('data-zoom') === '3') {
@@ -136,6 +129,7 @@ function triggerSwiperOverlay(event) {
 }
 //START IT UP
 if( $(window).width() > 768 ) {
+  alert("start")
   initDrag();
   startFunction();
 }
@@ -147,4 +141,8 @@ else {
   $(document).on('click', '.hotel-gallery__item', function(event){
     triggerSwiperOverlay(event)
   })
+  // initDrag();
 }
+
+// initDrag();
+// startFunction();
