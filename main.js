@@ -9,22 +9,24 @@ function scrollTimer() {
   var foo = document.getElementById('hotel-gallery-wrap')
   var fooScrollheight = foo.scrollHeight;
   foo.scrollTop = foo.scrollTop + 1;
-  
-  //foo.scrollTop = foo.scrollTop + 1;
 
-
-  //console.log(foo.scrollTop, fooScrollheight)
-  // if( Math.floor(foo.scrollTop + 1) == Math.floor(fooScrollheight)) {
-  //   stopFunction()
-  // }
+  if ( (document.getElementById('hotel-gallery-wrap').scrollTop === 0) || (document.getElementById('hotel-gallery-wrap').scrollTop + window.innerHeight) >= fooScrollheight) {
+    stopFunction()
+    document.getElementById('hotel-gallery-wrap').style.scrollBehavior = 'smooth';
+    setTimeout(() => {
+      startFunction()
+    }, 500);
+  }
 }
 
 function stopFunction() {
   console.log("stopFunction called")
   clearInterval(theInterval);
+  document.getElementById('hotel-gallery-wrap').scrollTop = 0
 }
 function startFunction() {
   console.log("startFunction called")
+  document.getElementById('hotel-gallery-wrap').style.scrollBehavior = '';
   theInterval = setInterval(scrollTimer, 24);
 }
 
