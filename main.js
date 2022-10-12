@@ -1,5 +1,7 @@
 import './src/index.css';
 import PinchZoom from 'https://unpkg.com/pinch-zoom-js@2.3.5/dist/pinch-zoom.min.js';
+
+
 const elem = document.querySelector('#panzoomEl');
 
 let theInterval;
@@ -29,26 +31,15 @@ function startFunction() {
 
 
 function initDrag() {
-  //Click event for mobile
-  // if($(window).width() < 768) {
-  //   var ww = window.innerWidth / 3;
-  //   var gWrap = document.getElementById('hotel-gallery-wrap')    
-  //   gWrap.scrollTop = 0;  
-  //   gWrap.scrollLeft += ww;
-  //   $(document).on('click', '.hotel-gallery__item', function(event){
-  //     triggerSwiperOverlay(event)
-  //   })
-  // }
-
-
-
-
-  //Code for Desktop
+    //Scroll the grid left 25%
     var ww = window.innerWidth / 4;
     var gWrap = document.getElementById('hotel-gallery-wrap')
     
     gWrap.scrollTop = 0;  
     gWrap.scrollLeft += ww;
+
+  //Code for Desktop
+
 
     //var elem = document.querySelector('#panzoomEl');
     var draggie = new Draggabilly( elem, {
@@ -144,5 +135,16 @@ function triggerSwiperOverlay(event) {
   } 
 }
 //START IT UP
-initDrag();
-startFunction();
+if( $(window).width() > 768 ) {
+  initDrag();
+  startFunction();
+}
+else {
+  var ww = window.innerWidth / 3.5;
+  var gWrap = document.getElementById('hotel-gallery-wrap')    
+  gWrap.scrollTop = 0;  
+  gWrap.scrollLeft += ww;
+  $(document).on('click', '.hotel-gallery__item', function(event){
+    triggerSwiperOverlay(event)
+  })
+}
