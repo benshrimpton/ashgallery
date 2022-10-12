@@ -129,7 +129,6 @@ function triggerSwiperOverlay(event) {
 }
 //START IT UP
 if( $(window).width() > 768 ) {
-  alert("start")
   initDrag();
   startFunction();
 }
