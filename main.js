@@ -1,14 +1,18 @@
 import './src/index.css';
-
+import PinchZoom from 'https://unpkg.com/pinch-zoom-js@2.3.5/dist/pinch-zoom.min.js';
 const elem = document.querySelector('#panzoomEl');
 
 let theInterval;
 
 function scrollTimer() {
   var foo = document.getElementById('hotel-gallery-wrap')
-  var fooScrollheight =  foo.scrollHeight;
-  foo.scrollTop = Math.floor(foo.scrollTop + 1);
-  console.log(Math.floor(foo.scrollTop), fooScrollheight)
+  var fooScrollheight = foo.scrollHeight;
+  foo.scrollTop = foo.scrollTop + 1;
+  
+  //foo.scrollTop = foo.scrollTop + 1;
+
+
+  console.log(foo.scrollTop, fooScrollheight)
   // if( Math.floor(foo.scrollTop + 1) == Math.floor(fooScrollheight)) {
   //   stopFunction()
   // }
@@ -19,26 +23,27 @@ function stopFunction() {
   clearInterval(theInterval);
 }
 function startFunction() {
-  if($(window).width() > 1) {
-    console.log("startFunction called")
-    theInterval = setInterval(scrollTimer, 24);
-  }
+  console.log("startFunction called")
+  theInterval = setInterval(scrollTimer, 24);
 }
 
 
 function initDrag() {
   //Click event for mobile
-  if($(window).width() < 768) {
-    var ww = window.innerWidth / 3;
-    var gWrap = document.getElementById('hotel-gallery-wrap')    
-    gWrap.scrollTop = 0;  
-    gWrap.scrollLeft += ww;
-    $(document).on('click', '.hotel-gallery__item', function(event){
-      triggerSwiperOverlay(event)
-    })
-  }
+  // if($(window).width() < 768) {
+  //   var ww = window.innerWidth / 3;
+  //   var gWrap = document.getElementById('hotel-gallery-wrap')    
+  //   gWrap.scrollTop = 0;  
+  //   gWrap.scrollLeft += ww;
+  //   $(document).on('click', '.hotel-gallery__item', function(event){
+  //     triggerSwiperOverlay(event)
+  //   })
+  // }
+
+
+
+
   //Code for Desktop
-  if($(window).width() > 1) {
     var ww = window.innerWidth / 4;
     var gWrap = document.getElementById('hotel-gallery-wrap')
     
@@ -50,6 +55,8 @@ function initDrag() {
       //containment: '#hotel-gallery-wrap'
     });
 
+    //let pz = new PinchZoom(gWrap);
+
     function listener(e) {
       console.log( e, this.position.x, this.position.y );    
     }
@@ -58,6 +65,7 @@ function initDrag() {
       console.log("Drag started... stop the auto scroll behaviour")
       stopFunction()
     });
+ 
 
     draggie.on( 'dragEnd', function( event, pointer ){
       console.log("Drag ended... stop the auto scroll behaviour");
@@ -68,10 +76,8 @@ function initDrag() {
     });  
 
     draggie.on( 'staticClick', function( event ) {
-      triggerSwiperOverlay(event)
-        
+      triggerSwiperOverlay(event)        
     }) 
-  }// END  if($(window).width() > 768) {
 
   $(document).on('click', '#button', ()=> {
   
@@ -89,6 +95,7 @@ function initDrag() {
       elem.style.top = 0
       elem.style.left = 0
       window.scrollTo(0, 0);
+      draggie.disable()
     }
 
     else if($("#panzoomEl").attr('data-zoom') === '1') {
@@ -99,7 +106,8 @@ function initDrag() {
       //Set the XY position to top of page.
       elem.style.top = 0
       elem.style.left = 0
-      window.scrollTo(0, 0);      
+      window.scrollTo(0, 0); 
+      draggie.disable()     
     }    
 
     else if($("#panzoomEl").attr('data-zoom') === '2') {
@@ -109,7 +117,8 @@ function initDrag() {
       //Set the XY position to top of page.
       elem.style.top = 0
       elem.style.left = 0
-      window.scrollTo(0, 0);      
+      window.scrollTo(0, 0);  
+      draggie.disable()    
     } 
 
     else if($("#panzoomEl").attr('data-zoom') === '3') {
@@ -120,7 +129,8 @@ function initDrag() {
       gWrap.scrollTop = 0;  
       gWrap.scrollLeft += ww;
       window.scrollTo(0, 0); 
-      $("#panzoomEl").attr('data-zoom', '0')        
+      $("#panzoomEl").attr('data-zoom', '0')   
+      draggie.enable()     
     } 
   });
 }

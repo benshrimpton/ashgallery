@@ -12,9 +12,9 @@
   }
 }
 .hotel-gallery-wrap {
-  /* border: dashed 10px red; */
+  border: solid 3px red;
   cursor:grab;
-  height: 100vh;
+  /* height: 100vh; */
 }
 @screen sm {
   .hotel-gallery-wrap {
@@ -57,7 +57,7 @@ header {
   column-gap: 1rem;
 }
 #panzoomEl {
-  border: solid 1px red;
+  border: solid 1px yellow;
   padding-bottom: 1rem;
 }
 #panzoomEl[data-zoom='1']{
